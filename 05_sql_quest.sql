@@ -55,49 +55,21 @@ FROM team;
 SELECT *
 FROM player;
 
--- question 1.a: nom, prenom, role, equipe par ordre alphabetique equipe  --
+-- Q1: nom, prenom, role, equipe par ordre alphabetique  --
 SELECT wizard.lastname, wizard.firstname, player.role, team.name
 FROM player
 INNER JOIN wizard ON wizard.id = player.wizard_id
 INNER JOIN team ON team.id = player.team_id
-ORDER BY team.name;
+ORDER BY team.name, player.role, wizard.lastname, wizard.firstname;
 
--- question 1.b: nom, prenom, role, equipe par ordre alphabetique role  --
-SELECT wizard.lastname, wizard.firstname, player.role, team.name
-FROM player
-INNER JOIN wizard ON wizard.id = player.wizard_id
-INNER JOIN team ON team.id = player.team_id
-ORDER BY player.role;
-
--- question 1.c: nom, prenom, role, equipe par ordre alphabetique nom  --
-SELECT wizard.lastname, wizard.firstname, player.role, team.name
-FROM player
-INNER JOIN wizard ON wizard.id = player.wizard_id
-INNER JOIN team ON team.id = player.team_id
-ORDER BY wizard.lastname;
-
--- question 1.d: nom, prenom, role, equipe par ordre alphabetique prenom  --
-SELECT wizard.lastname, wizard.firstname, player.role, team.name
-FROM player
-INNER JOIN wizard ON wizard.id = player.wizard_id
-INNER JOIN team ON team.id = player.team_id
-ORDER BY wizard.firstname;
-
--- question 2.a: nom et prenom des seekers par ordre alphabetique nom --
+-- Q2: nom et prenom des seekers par ordre alphabetique nom --
 SELECT wizard.lastname, wizard.firstname, player.role
 FROM player
 INNER JOIN wizard ON wizard.id = player.wizard_id
 WHERE player.role = 'seeker'
-ORDER BY wizard.lastname;
+ORDER BY wizard.lastname, wizard.firstname;
 
--- question 2.a: nom et prenom des seekers par ordre alphabetique prenom --
-SELECT wizard.firstname, wizard.lastname, player.role
-FROM player
-INNER JOIN wizard ON wizard.id = player.wizard_id
-WHERE player.role = 'seeker'
-ORDER BY wizard.firstname;
-
--- question 3: 
+-- Q3: -- 
 SELECT *
 FROM wizard
 LEFT JOIN player ON wizard.id = player.wizard_id
